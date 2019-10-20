@@ -53,6 +53,8 @@
                         <div class="content">
                             <ul>
                                 <li><a href="http://localhost/phpinfo.php">phpinfo()</a></li>
+                                <li><a href="http://localhost/udemycourse/index.php">Udemy class</a></li>
+                                <li><a href="http://localhost/xpay/index.html">Nexi Integration</a></li>
                                 <li><a href="http://localhost:8080">phpMyAdmin</a></li>
                                 <li><a href="http://localhost/test_db.php">Test DB Connection</a></li>
                             </ul>
