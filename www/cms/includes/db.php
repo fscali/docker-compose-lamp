@@ -13,13 +13,28 @@ foreach ($db as $key => $value) {
 function execDbQuery(callable $cb) {
     $connection = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); //host, user, password, database
     if ($connection) {
-           echo "we are connected";
             $cb($connection);
         } else {
             die('Database connection failure ' . mysqli_connect_error());
     }
 }
 
-execDbQuery(function($connection){});
+function getAllCategories() {
+    $categories = array();
+    execDbQuery(function($connection) use (&$categories) {
+        $query = "SELECT * from categories";
+        $result = mysqli_query($connection, $query);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $categories []= $row['cat_title'];
+            }
+            
+        } else {
+            die('Could not retrieve all categories ' . mysqli_error($connection));
+        }
+    });
+    return $categories;
+}
+
 
 ?>
