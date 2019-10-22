@@ -36,5 +36,22 @@ function getAllCategories() {
     return $categories;
 }
 
+function getPosts() {
+    $posts = array();
+    execDbQuery(function($connection) use (&$posts) {
+        $query = "SELECT * from posts";
+        $result = mysqli_query($connection, $query);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $posts []= $row;
+            }
+            
+        } else {
+            die('Could not retrieve all categories ' . mysqli_error($connection));
+        }
+    });
+    return $posts;
+}
+
 
 ?>
