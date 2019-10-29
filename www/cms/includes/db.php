@@ -22,7 +22,7 @@ function execDbQuery(callable $cb) {
 function getAllCategories() {
     $categories = array();
     execDbQuery(function($connection) use (&$categories) {
-        $query = "SELECT * from categories";
+        $query = "SELECT * from category";
         $result = mysqli_query($connection, $query);
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
@@ -53,5 +53,22 @@ function getPosts() {
     return $posts;
 }
 
+
+function searchByTag( $search ) {
+    $posts = array();
+    execDbQuery(function($connection) use ($search, &$posts) {
+        $query = "SELECT * from posts where post_tags LIKE '%$search%' ";
+        $result = mysqli_query($connection, $query);
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $posts []= $row;
+            }
+            
+        } else {
+            die('Could not do search ' . mysqli_error($connection));
+        }
+    });
+    return $posts;
+}
 
 ?>

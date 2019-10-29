@@ -3,10 +3,17 @@ include('includes/db.php');
 include('includes/header.php');
 include('includes/navigation.php');
 
-$posts = getPosts();
 
 ?>
-
+ <?php 
+    if (isset($_POST['search'])) {
+        $search = $_POST['search'];
+        $posts = searchByTag($search);
+        if (count($posts) == 0){
+            echo "<h1>No result </h1>";
+        }
+    }
+?>
   
 
     <!-- Page Content -->
