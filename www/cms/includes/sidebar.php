@@ -26,7 +26,7 @@
                                 <?php 
                                 $categories = getAllCategories();
                                 foreach($categories as $category) {
-                                    echo "<li><a href=\"#\">$category</a></li>";
+                                    echo "<li><a href=\"#\">$category[cat_title]</a></li>";
                                 }
                                 ?>
                             </ul>

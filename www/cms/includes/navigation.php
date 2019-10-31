@@ -16,15 +16,15 @@
                      <?php 
                         $categories = getAllCategories();
                         foreach($categories as $category) {
-                            echo "<li><a href=\"#\">$category</a></li>";
+                            echo "<li><a href=\"#\">$category[cat_title]</a></li>";
                         }
                     ?>
                                 
                                 
-                  <!--  <li>
-                        <a href="#">About</a>
+                   <li>
+                        <a href="admin">Admin</a>
                     </li>
-                    <li>
+                  <!--  <li>
                         <a href="#">Services</a>
                     </li>
                     <li>

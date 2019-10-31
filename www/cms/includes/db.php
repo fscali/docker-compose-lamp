@@ -26,7 +26,9 @@ function getAllCategories() {
         $result = mysqli_query($connection, $query);
         if ($result) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $categories []= $row['cat_title'];
+                //$categories []= $row['cat_title'];
+                $categories []= $row;
+
             }
             
         } else {
@@ -34,6 +36,31 @@ function getAllCategories() {
         }
     });
     return $categories;
+}
+
+function deleteCategory($cat_id) {
+    execDbQuery(function($connection) use ($cat_id) {
+        $query = "DELETE from category WHERE cat_id=$cat_id";
+        $result = mysqli_query($connection, $query);
+        if ($result) {
+        
+            
+        } else {
+            die('Could not delete category ' . mysqli_error($connection));
+        }
+    });
+}
+
+function addCategory($cat_title) {
+    execDbQuery(function($connection) use ($cat_title) {
+        $query = "INSERT INTO category (cat_title) VALUES ('$cat_title')";
+        $result = mysqli_query($connection, $query);
+        if ($result) {
+                        
+        } else {
+            die('Could not insert category ' . mysqli_error($connection));
+        }
+    });
 }
 
 function getPosts() {
